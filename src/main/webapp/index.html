@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerBoostAI - AI Resume Analyzer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #061326;
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            border-bottom: 1px solid #16263d;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #4285ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            color: #d9e2f0;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: #4285ff;
+        }
+
+        .nav-button {
+            background: #3978ff;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 8%;
+            gap: 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 58px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 span {
+            color: #4285ff;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #b9c5d6;
+            margin-bottom: 35px;
+        }
+
+        .main-button {
+            display: inline-block;
+            background: #3978ff;
+            color: white;
+            padding: 16px 28px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .main-button:hover {
+            background: #2865e8;
+        }
+
+        .security {
+            margin-top: 20px;
+            color: #9eabc0;
+            font-size: 14px;
+        }
+
+        /* Resume Illustration */
+        .hero-image {
+            width: 400px;
+            height: 400px;
+            background: #ffffff;
+            border-radius: 15px;
+            position: relative;
+            padding: 35px;
+            color: #172238;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .resume-circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #dce8ff;
+            margin-bottom: 25px;
+        }
+
+        .resume-line {
+            height: 10px;
+            background: #dbe4f5;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .resume-line.short {
+            width: 55%;
+        }
+
+        .resume-line.medium {
+            width: 75%;
+        }
+
+        .score {
+            position: absolute;
+            right: -45px;
+            bottom: 40px;
+            width: 180px;
+            padding: 25px;
+            border-radius: 15px;
+            background: #101e35;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .score h3 {
+            margin-bottom: 15px;
+        }
+
+        .score-number {
+            font-size: 40px;
+            color: #4285ff;
+            font-weight: bold;
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 45px 8%;
+            background: #091a31;
+        }
+
+        .feature {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .feature h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .feature p {
+            color: #aebbd0;
+            line-height: 1.6;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #f5f7fb;
+            color: #101c31;
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 36px;
+            margin-bottom: 45px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .step {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            width: 30%;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #3978ff;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: #667085;
+            line-height: 1.6;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-image {
+                width: 320px;
+                height: 320px;
+            }
+
+            .features,
+            .steps {
+                flex-direction: column;
+            }
+
+            .feature,
+            .step {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="logo">
+        CareerBoost<span>AI</span>
+    </div>
+
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+
+    <a href="#" class="nav-button">Get Started</a>
+</nav>
+
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            AI-Powered
+            <span>Resume Analyzer</span>
+        </h1>
+
+        <p>
+            Get AI insights, ATS score, keyword analysis and
+            actionable suggestions to improve your resume
+            and increase your chances of getting shortlisted.
+        </p>
+
+        <a href="#" class="main-button">
+            Analyze My Resume
+        </a>
+
+        <div class="security">
+            🔒 Your resume data is secure and confidential
+        </div>
+
+    </div>
+
+
+    <!-- Resume Illustration -->
+    <div class="hero-image">
+
+        <div class="resume-circle"></div>
+
+        <div class="resume-line"></div>
+        <div class="resume-line medium"></div>
+        <div class="resume-line short"></div>
+
+        <div class="resume-line"></div>
+        <div class="resume-line medium"></div>
+        <div class="resume-line short"></div>
+
+        <div class="score">
+            <h3>ATS Score</h3>
+
+            <div class="score-number">
+                85
+            </div>
+
+            <p>/100</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+<section class="features" id="features">
+
+    <div class="feature">
+        <div class="icon">📊</div>
+        <h3>ATS Score</h3>
+        <p>
+            Check how well your resume matches
+            Applicant Tracking Systems.
+        </p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">🔑</div>
+        <h3>Keyword Analysis</h3>
+        <p>
+            Find important keywords and identify
+            missing skills from your resume.
+        </p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">💡</div>
+        <h3>AI Suggestions</h3>
+        <p>
+            Get intelligent suggestions to improve
+            your resume.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- How It Works -->
+<section class="how-it-works" id="how-it-works">
+
+    <h2>How It Works</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-number">01</div>
+            <h3>Upload Resume</h3>
+            <p>
+                Upload your resume in PDF or DOCX format.
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">02</div>
+            <h3>AI Analysis</h3>
+            <p>
+                Our Java backend processes the resume
+                and performs intelligent analysis.
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">03</div>
+            <h3>Get Report</h3>
+            <p>
+                Receive your ATS score, keywords,
+                skills and improvement suggestions.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
