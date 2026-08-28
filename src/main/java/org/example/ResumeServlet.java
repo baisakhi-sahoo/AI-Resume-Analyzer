@@ -22,6 +22,20 @@ public class ResumeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         out.println("<h1>Resume Analyzer</h1>");
-        out.println("<p>Servlet received your request successfully!</p>");
+        out.println("<p>Please upload your resume to start the analysis.</p>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<h1>Resume Received!</h1>");
+        out.println("<p>Your resume was successfully sent to our Java backend.</p>");
+        out.println("<p>Next, we will process the resume and analyze it.</p>");
     }
 }
