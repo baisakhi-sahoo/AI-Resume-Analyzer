@@ -3,32 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareerBoostAI - Upload Resume</title>
+
+    <title>CareerBoostAI - Resume Analyzer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: 2px dashed #bbb;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .upload-box p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Analyze Your Resume</h1>
+<div class="container">
 
-<p>Upload your resume to get an ATS and AI-powered analysis.</p>
+    <h1>Analyze Your Resume</h1>
 
-<form action="analyze" method="post" enctype="multipart/form-data">
+    <p class="subtitle">
+        Upload your resume and get AI-powered career insights.
+    </p>
 
-    <label for="resume">Choose your resume:</label>
+    <form action="analyze" method="post" enctype="multipart/form-data">
 
-    <input type="file"
-           id="resume"
-           name="resume"
-           accept=".pdf,.doc,.docx"
-           required>
+        <div class="upload-box">
 
-    <br><br>
+            <p><strong>Choose your resume</strong></p>
 
-    <button type="submit">
-        Analyze Resume
-    </button>
+            <input type="file"
+                   name="resume"
+                   accept=".pdf,.doc,.docx"
+                   required>
 
-</form>
+        </div>
+
+        <button type="submit">
+            Analyze Resume
+        </button>
+
+    </form>
+
+    <a href="index.html" class="back">
+        ← Back to Home
+    </a>
+
+</div>
 
 </body>
 </html>
