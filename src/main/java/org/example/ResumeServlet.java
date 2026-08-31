@@ -11,6 +11,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,6 +56,33 @@ public class ResumeServlet extends HttpServlet {
 
                     PDFTextStripper stripper = new PDFTextStripper();
                     String resumeText = stripper.getText(document);
+                    Client client = Client.builder()
+                            .apiKey(System.getenv("GEMINI_API_KEY"))
+                            .build();
+                    String prompt = """
+Analyze the following resume and provide a basic professional analysis.
+
+Include:
+1. Key skills
+2. Strengths
+3. Weaknesses
+4. Missing or recommended skills
+5. Suggestions to improve the resume
+
+Resume:
+""" + resumeText;
+                    GenerateContentResponse airesponse =
+                            client.models.generateContent(
+                                    "gemini-3.6-flash",
+                                    prompt,
+                                    null
+                            );
+
+                    String aiAnalysis = airesponse.text();
+
+                    System.out.println("===== AI RESUME ANALYSIS =====");
+                    System.out.println(aiAnalysis);
+                    System.out.println("===== END AI ANALYSIS =====");
                     String lowerText = resumeText.toLowerCase();
                     List<String> detectedSkills = new ArrayList<>();
 
@@ -101,6 +130,8 @@ public class ResumeServlet extends HttpServlet {
                     }
 
                     out.println("<h2>ATS Score: " + atsScore + "/100</h2>");
+                    out.println("<h2>AI Resume Analysis</h2>");
+                    out.println("<pre>" + aiAnalysis + "</pre>");
                     out.println("<h2>Basic Resume Analysis</h2>");
                     out.println("<p>Skills detected: " + detectedSkills.size()+ "</p>");
                     System.out.println("===== EXTRACTED RESUME TEXT =====");
