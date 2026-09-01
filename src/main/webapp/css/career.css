@@ -1,0 +1,444 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fc;
+    color: #1f2937;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 35px 45px 50px;
+}
+
+
+/* Header */
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-header h1 {
+    font-size: 34px;
+    color: #172033;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+
+/* Grid */
+
+.top-grid,
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+
+/* Cards */
+
+.card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    margin-bottom: 24px;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.card-title h2 {
+    font-size: 21px;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.card-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+/* Job Roles */
+
+.role-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+}
+
+.role-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.role-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2ff;
+    border-radius: 50%;
+}
+
+.match {
+    background: #e8f8ee;
+    color: #16803c;
+    padding: 7px 11px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Skills */
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+}
+
+.skill-name {
+    font-weight: 600;
+}
+
+.priority {
+    padding: 7px 11px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.high {
+    background: #fde8e8;
+    color: #c62828;
+}
+
+.medium {
+    background: #fff3dc;
+    color: #b76b00;
+}
+
+
+/* AI Suggestions */
+
+.ai-card {
+    border-top: 4px solid #22c55e;
+}
+
+.suggestion-item,
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #f1faf4;
+    line-height: 1.5;
+}
+
+.suggestion-item span {
+    color: #16a34a;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* Improvement Tips */
+
+.tips-card {
+    border-top: 4px solid #f59e0b;
+}
+
+.tip-item {
+    background: #fff8eb;
+}
+
+.tip-item span {
+    color: #f59e0b;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* Buttons */
+
+.card-button {
+    display: block;
+    margin: 20px auto 0;
+    border: none;
+    background: transparent;
+    color: #4f46e5;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-button:hover {
+    text-decoration: underline;
+}
+
+
+/* Bottom Growth Section */
+
+.growth-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f3efff;
+    border: 1px solid #ddd3ff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 5px;
+}
+
+.growth-card h2 {
+    color: #4324a8;
+    margin-bottom: 8px;
+}
+
+.growth-card p {
+    color: #6b7280;
+}
+
+.upload-button {
+    background: #5427d9;
+    color: white;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.upload-button:hover {
+    background: #4320b5;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    .page-container {
+        padding: 25px 18px;
+    }
+
+    .top-grid,
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header h1 {
+        font-size: 28px;
+    }
+
+    .growth-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+}
+.skill-tag {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 20px;
+    background: #eef4ff;
+    color: #315ea8;
+    font-size: 14px;
+    font-weight: 500;
+}
+career-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+}
+
+.career-number {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8eefc;
+    color: #3157a6;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.career-content {
+    font-size: 14px;
+    color: #374151;
+}
+
+
+/* ==============================
+   SKILLS TO LEARN
+   ============================== */
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.learning-skill {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    background: #eef5ff;
+    border: 1px solid #d7e5ff;
+
+    color: #3157a6;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ==============================
+   AI SUGGESTIONS
+   ============================== */
+
+.suggestion-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin: 10px 0;
+    padding: 11px 13px;
+
+    border-radius: 12px;
+
+    background: #f8faf9;
+    border: 1px solid #e1ebe5;
+}
+
+.suggestion-number {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5ed;
+    color: #3d8060;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.suggestion-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4b5563;
+}
+
+
+/* ==============================
+   RESUME IMPROVEMENT TIPS
+   ============================== */
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin: 10px 0;
+    padding: 11px 13px;
+
+    border-radius: 12px;
+
+    background: #fffaf0;
+    border: 1px solid #f2e5c7;
+}
+
+.tip-number {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0c9;
+    color: #9a741c;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tip-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4b5563;
+}

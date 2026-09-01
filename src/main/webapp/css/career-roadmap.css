@@ -1,0 +1,606 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f7f8fc;
+    color: #18213d;
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.main-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 40px 55px;
+}
+
+/* ================= HEADER ================= */
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+.back-link {
+    color: #68718a;
+    font-size: 14px;
+    margin-bottom: 14px;
+    cursor: pointer;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #737c96;
+    font-size: 15px;
+}
+
+
+/* ================= TARGET ROLE ================= */
+
+.target-card {
+    background: linear-gradient(120deg, #ffffff, #f6f3ff);
+    border: 1px solid #e2e4ef;
+    border-radius: 17px;
+    padding: 30px;
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 4px 18px rgba(35, 45, 90, 0.05);
+}
+
+.target-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.target-icon {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: #eee9ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+}
+
+.section-label {
+    color: #6347e9;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.target-card h2 {
+    font-size: 26px;
+    margin: 7px 0;
+}
+
+.target-card p {
+    color: #68718a;
+    max-width: 700px;
+    line-height: 1.5;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: #f0edff;
+    border: 1px solid #d9d2ff;
+    color: #5d42df;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+}
+
+.target-emoji {
+    font-size: 75px;
+    padding-right: 25px;
+}
+
+
+/* ================= CONTENT GRID ================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+/* ================= CARD ================= */
+
+.card {
+    background: white;
+
+    border: 1px solid #e3e5ee;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow: 0 4px 18px rgba(35, 45, 90, 0.04);
+}
+
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.card-description {
+    color: #7b8398;
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+
+/* ================= PROJECTS ================= */
+
+.project-item {
+    border: 1px solid #e5e7ef;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 11px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.project-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 11px;
+
+    background: #eeeaff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    flex-shrink: 0;
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-info h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    color: #737b91;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.project-meta {
+    margin-top: 7px;
+}
+
+.project-meta span {
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border-radius: 12px;
+
+    font-size: 10px;
+
+    margin-right: 4px;
+}
+
+.beginner {
+    background: #edf8f1;
+    color: #239456;
+}
+
+.intermediate {
+    background: #fff5e5;
+    color: #a96b13;
+}
+
+.advanced {
+    background: #ffecec;
+    color: #c34646;
+}
+
+.duration {
+    background: #f1f3f8;
+    color: #656d81;
+}
+
+.view-button {
+    border: 1px solid #7657f5;
+
+    background: white;
+
+    color: #6245dc;
+
+    border-radius: 7px;
+
+    padding: 7px 10px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.view-button:hover {
+    background: #f2efff;
+}
+
+
+/* ================= INTERVIEW ================= */
+
+.sub-heading {
+    font-size: 14px;
+
+    margin-bottom: 12px;
+}
+
+.interview-skills {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+.interview-skill {
+    border: 1px solid #e1e4ec;
+
+    border-radius: 10px;
+
+    padding: 12px 7px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.interview-skill span {
+    display: block;
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+}
+
+.practice-box {
+    border: 1px solid #e1e4ec;
+
+    border-radius: 12px;
+
+    padding: 15px;
+}
+
+.practice-box h3 {
+    font-size: 14px;
+
+    margin-bottom: 11px;
+}
+
+.question {
+    color: #505970;
+
+    font-size: 13px;
+
+    margin: 9px 0;
+}
+
+
+/* ================= READINESS ================= */
+
+.readiness {
+    margin-top: 18px;
+}
+
+.readiness-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+.progress {
+    width: 100%;
+
+    height: 9px;
+
+    background: #e9ebf3;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 60%;
+
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #6544e8,
+        #8a69f5
+    );
+
+    border-radius: 10px;
+}
+
+
+/* ================= CHECKLIST ================= */
+
+.checklist {
+    width: 100%;
+}
+
+.check-item {
+    display: flex;
+
+    align-items: center;
+
+    padding: 11px 5px;
+
+    border-bottom: 1px solid #f0f1f5;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.check-item:last-child {
+    border-bottom: none;
+}
+
+.check-item input {
+    width: 17px;
+    height: 17px;
+
+    margin-right: 11px;
+
+    cursor: pointer;
+}
+
+.check-item span {
+    color: #4f5870;
+}
+
+.check-item input:checked + span {
+    text-decoration: line-through;
+
+    color: #9aa0af;
+}
+
+.check-message {
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    background: #fff7e8;
+
+    color: #9a6416;
+
+    font-size: 12px;
+}
+
+
+/* ================= ROADMAP ================= */
+
+.roadmap {
+    position: relative;
+
+    padding-left: 43px;
+}
+
+.roadmap::before {
+    content: "";
+
+    position: absolute;
+
+    left: 16px;
+
+    top: 15px;
+
+    bottom: 15px;
+
+    width: 2px;
+
+    background: #ddd8f8;
+}
+
+.road-step {
+    position: relative;
+
+    margin-bottom: 14px;
+
+    border: 1px solid #e5e7ef;
+
+    border-radius: 10px;
+
+    padding: 13px 15px;
+}
+
+.road-step:last-child {
+    margin-bottom: 0;
+}
+
+.road-icon {
+    position: absolute;
+
+    left: -43px;
+
+    top: 12px;
+
+    width: 33px;
+
+    height: 33px;
+
+    border-radius: 50%;
+
+    background: #eeeaff;
+
+    border: 3px solid white;
+
+    box-shadow: 0 0 0 1px #ddd8f8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 14px;
+}
+
+.road-step.completed .road-icon {
+    background: #e5f8ed;
+
+    color: #229657;
+}
+
+.road-step h3 {
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+.road-step p {
+    color: #757d91;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+
+/* ================= HOVER EFFECTS ================= */
+
+.project-item:hover {
+    border-color: #d6cffd;
+
+    box-shadow: 0 3px 12px rgba(92, 62, 232, 0.06);
+}
+
+.interview-skill:hover {
+    border-color: #d6cffd;
+
+    background: #faf9ff;
+}
+
+.road-step:hover {
+    border-color: #d6cffd;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 950px) {
+
+    .main-container {
+        padding: 30px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .target-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .target-emoji {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .main-container {
+        padding: 20px 15px;
+    }
+
+    .page-header h1 {
+        font-size: 26px;
+    }
+
+    .target-content {
+        align-items: flex-start;
+    }
+
+    .target-icon {
+        width: 70px;
+        height: 70px;
+
+        font-size: 32px;
+    }
+
+    .target-card h2 {
+        font-size: 21px;
+    }
+
+    .project-item {
+        align-items: flex-start;
+    }
+
+    .view-button {
+        display: none;
+    }
+
+    .interview-skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
