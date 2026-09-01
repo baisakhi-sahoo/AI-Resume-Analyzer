@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis</title>
+
+    <link rel="stylesheet" href="css/analysis.css">
+</head>
+
+<body>
+
+<div class="analysis-container">
+
+    <header class="page-header">
+        <h1>Resume Analysis</h1>
+        <p>AI-powered insights to help improve your resume</p>
+    </header>
+
+
+    <!-- ATS SCORE -->
+
+    <section class="card ats-card">
+
+        <h2>⭐ ATS Score</h2>
+
+        <div class="ats-score-circle">
+            <span id="atsScore" class="ats-score-number">0</span>
+            <span class="ats-score-total">/100</span>
+        </div>
+
+        <p id="atsMessage">
+            Your resume is being analyzed.
+        </p>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <div class="two-column">
+
+        <section class="card">
+
+            <h2>✅ Matching Skills</h2>
+
+            <div id="matchingSkills" class="analysis-content">
+                Loading...
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>⚠️ Missing Skills</h2>
+
+            <div id="missingSkills" class="analysis-content">
+                Loading...
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- STRENGTHS & WEAKNESSES -->
+
+    <div class="two-column">
+
+        <section class="card strength-card">
+
+            <h2>💪 Strengths</h2>
+
+            <div id="strengths" class="analysis-content">
+                Loading...
+            </div>
+
+        </section>
+
+
+        <section class="card weakness-card">
+
+            <h2>⚠️ Weaknesses</h2>
+
+            <div id="weaknesses" class="analysis-content">
+                Loading...
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- RESUME SUMMARY -->
+
+    <section class="card">
+
+        <h2>📄 Resume Summary</h2>
+
+        <div id="resumeSummary" class="analysis-content">
+            Loading...
+        </div>
+
+    </section>
+
+
+    <!-- IMPROVEMENT SUGGESTIONS -->
+
+    <section class="card improvement-card">
+
+        <h2>🚀 Improvement Suggestions</h2>
+
+        <div id="improvementSuggestions" class="analysis-content">
+            Loading...
+        </div>
+
+    </section>
+
+
+    <div class="bottom-space"></div>
+
+</div>
+
+
+<script src="js/analysis.js"></script>
+
+</body>
+</html>

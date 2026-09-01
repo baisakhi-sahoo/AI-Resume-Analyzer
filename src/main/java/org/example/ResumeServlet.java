@@ -60,14 +60,36 @@ public class ResumeServlet extends HttpServlet {
                             .apiKey(System.getenv("GEMINI_API_KEY"))
                             .build();
                     String prompt = """
-Analyze the following resume and provide a basic professional analysis.
+Analyze the following resume for a professional job application.
 
-Include:
-1. Key skills
-2. Strengths
-3. Weaknesses
-4. Missing or recommended skills
-5. Suggestions to improve the resume
+Return the analysis using EXACTLY these sections:
+
+ATS_ANALYSIS:
+Give a short explanation of how ATS-friendly the resume is.
+
+MATCHING_SKILLS:
+List the important technical skills found in the resume.
+
+MISSING_SKILLS:
+List important skills that appear to be missing or could strengthen the candidate's profile.
+
+STRENGTHS:
+List 3 to 5 strong points about the resume.
+
+WEAKNESSES:
+List 3 to 5 weaknesses or areas that should be improved.
+
+RESUME_SUMMARY:
+Give a short professional summary of the candidate's current profile.
+
+IMPROVEMENT_SUGGESTIONS:
+Give 3 to 5 practical suggestions to improve the resume.
+
+IMPORTANT:
+- Do not invent experience that is not present in the resume.
+- Base the analysis only on the information provided.
+- Keep the language professional and easy to understand.
+- Do not give an ATS score number. We will calculate that separately in Java.
 
 Resume:
 """ + resumeText;
@@ -79,7 +101,41 @@ Resume:
                             );
 
                     String aiAnalysis = airesponse.text();
+                    String atsAnalysis = "";
+                    String matchingSkills = "";
+                    String missingSkills = "";
+                    String strengths = "";
+                    String weaknesses = "";
+                    String resumeSummary = "";
+                    String improvementSuggestions = "";
 
+                    String[] sections = aiAnalysis.split("\n\n");
+
+                    for (String section : sections) {
+
+                        if (section.startsWith("ATS_ANALYSIS:")) {
+                            atsAnalysis = section.replace("ATS_ANALYSIS:", "").trim();
+
+                        } else if (section.startsWith("MATCHING_SKILLS:")) {
+                            matchingSkills = section.replace("MATCHING_SKILLS:", "").trim();
+
+                        } else if (section.startsWith("MISSING_SKILLS:")) {
+                            missingSkills = section.replace("MISSING_SKILLS:", "").trim();
+
+                        } else if (section.startsWith("STRENGTHS:")) {
+                            strengths = section.replace("STRENGTHS:", "").trim();
+
+                        } else if (section.startsWith("WEAKNESSES:")) {
+                            weaknesses = section.replace("WEAKNESSES:", "").trim();
+
+                        } else if (section.startsWith("RESUME_SUMMARY:")) {
+                            resumeSummary = section.replace("RESUME_SUMMARY:", "").trim();
+
+                        } else if (section.startsWith("IMPROVEMENT_SUGGESTIONS:")) {
+                            improvementSuggestions =
+                                    section.replace("IMPROVEMENT_SUGGESTIONS:", "").trim();
+                        }
+                    }
                     System.out.println("===== AI RESUME ANALYSIS =====");
                     System.out.println(aiAnalysis);
                     System.out.println("===== END AI ANALYSIS =====");
@@ -128,23 +184,24 @@ Resume:
                     if (atsScore > 100) {
                         atsScore = 100;
                     }
+                    request.getSession().setAttribute("atsScore", atsScore);
+                    request.getSession().setAttribute("atsAnalysis", atsAnalysis);
+                    request.getSession().setAttribute("matchingSkills", matchingSkills);
+                    request.getSession().setAttribute("missingSkills", missingSkills);
+                    request.getSession().setAttribute("strengths", strengths);
+                    request.getSession().setAttribute("weaknesses", weaknesses);
+                    request.getSession().setAttribute("resumeSummary", resumeSummary);
+                    request.getSession().setAttribute(
+                            "improvementSuggestions",
+                            improvementSuggestions
+                    );
+                    response.sendRedirect(request.getContextPath()+"/analysis.html");
+                    return;
 
-                    out.println("<h2>ATS Score: " + atsScore + "/100</h2>");
-                    out.println("<h2>AI Resume Analysis</h2>");
-                    out.println("<pre>" + aiAnalysis + "</pre>");
-                    out.println("<h2>Basic Resume Analysis</h2>");
-                    out.println("<p>Skills detected: " + detectedSkills.size()+ "</p>");
-                    System.out.println("===== EXTRACTED RESUME TEXT =====");
-                    System.out.println(resumeText);
-                    System.out.println("===== END RESUME TEXT =====");
-                    out.println("<h1>Resume Text Extracted!</h1>");
-                    out.println("<pre>" + resumeText + "</pre>");
                 }
             }
 
-            out.println("<h1>Resume Received!</h1>");
-            out.println("<p>File name: " + fileName + "</p>");
-            out.println("<p>File size: " + resumePart.getSize() + " bytes</p>");
+
 
         } else {
 
