@@ -5,9 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -17,13 +20,10 @@ public class LoginServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
-        String email =
-                request.getParameter("email");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-        String password =
-                request.getParameter("password");
-
-
+        // Validate fields
         if (email == null ||
                 password == null ||
                 email.trim().isEmpty() ||
@@ -36,63 +36,90 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-
         email = email.trim().toLowerCase();
 
+        try (Connection connection =
+                     DatabaseConnection.getConnection()) {
 
-        // Get users from RegisterServlet
+            String sql =
+                    "SELECT name, password FROM users WHERE email = ?";
 
-        Map<String, String> users =
-                RegisterServlet.getUsers();
+            try (PreparedStatement statement =
+                         connection.prepareStatement(sql)) {
 
+                statement.setString(1, email);
 
-        if (!users.containsKey(email)) {
+                ResultSet resultSet =
+                        statement.executeQuery();
+
+                // User found
+                if (resultSet.next()) {
+
+                    String storedPassword =
+                            resultSet.getString("password");
+
+                    String name =
+                            resultSet.getString("name");
+
+                    // Check password
+                    if (org.mindrot.jbcrypt.BCrypt.checkpw(
+                            password,
+                            storedPassword
+                    )) {
+
+                        HttpSession session =
+                                request.getSession();
+
+                        session.setAttribute(
+                                "userEmail",
+                                email
+                        );
+
+                        session.setAttribute(
+                                "userName",
+                                name
+                        );
+
+                        // Login successful
+                        response.sendRedirect(
+                                request.getContextPath()
+                                        + "/upload.html"
+                        );
+
+                    } else {
+
+                        response.getWriter().println(
+                                "<h2>Incorrect password.</h2>"
+                        );
+
+                        response.getWriter().println(
+                                "<a href='login.html'>Try Again</a>"
+                        );
+                    }
+
+                } else {
+
+                    response.getWriter().println(
+                            "<h2>Account not found.</h2>"
+                    );
+
+                    response.getWriter().println(
+                            "<a href='register.html'>Create an account</a>"
+                    );
+                }
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
 
             response.getWriter().println(
-                    "<h2>Account not found.</h2>"
+                    "<h2>Login failed.</h2>"
             );
 
             response.getWriter().println(
-                    "<a href='register.html'>Create an account</a>"
+                    "<p>Please try again.</p>"
             );
-
-            return;
         }
-
-
-        if (!users.get(email).equals(password)) {
-
-            response.getWriter().println(
-                    "<h2>Incorrect password.</h2>"
-            );
-
-            response.getWriter().println(
-                    "<a href='login.html'>Try again</a>"
-            );
-
-            return;
-        }
-
-
-        // Login successful
-
-        var session =
-                request.getSession();
-
-        session.setAttribute(
-                "userEmail",
-                email
-        );
-
-        session.setAttribute(
-                "userName",
-                RegisterServlet.getNames().get(email)
-        );
-
-
-        response.sendRedirect(
-                request.getContextPath()
-                        + "/analyze.html"
-        );
     }
 }
